@@ -18,7 +18,7 @@ export default function UserProvider({children}){
             })
             .catch(err=>console.log(err))
         }
-    },[])
+    },[user])
 
     async function userValidation(path){
         axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
