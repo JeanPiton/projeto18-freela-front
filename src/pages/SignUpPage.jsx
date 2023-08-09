@@ -13,7 +13,7 @@ export default function SignUpPage(){
             setLoading(true)
             await axios.post(`${import.meta.env.VITE_API_URL}/sign-up`,SignUpInputs)
             console.log("Cadastro realizado com sucesso")
-            nav('/')
+            nav('/login')
         } catch (err) {
             setLoading(false)
             alert(err.response.data)
