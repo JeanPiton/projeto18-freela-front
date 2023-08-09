@@ -10,8 +10,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ResetStyle/>
     <GlobalStyle/>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App/>
   </React.StrictMode>,
 )

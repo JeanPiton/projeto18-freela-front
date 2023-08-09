@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { UserContext } from "../contexts/UserContext"
 
 export default function SignInPage(){
+    const {setUser} = useContext(UserContext)
     const nav = useNavigate()
     const [loading,setLoading] = useState(false)
     const [SignInInputs,setSignInInputs] = useState({email:"",password:""})
@@ -12,7 +14,11 @@ export default function SignInPage(){
         try {
             setLoading(true)
             await axios.post(`${import.meta.env.VITE_API_URL}/sign-in`,SignInInputs)
-            nav('/')
+            .then(resp=>{
+                localStorage.setItem("user",JSON.stringify({email:SignInInputs.email,token:resp.data.token}))
+                setUser({email:SignInInputs.email,token:resp.data.token})
+                nav('/')
+            })
         } catch (err) {
             setLoading(false)
             alert(err.response.data)

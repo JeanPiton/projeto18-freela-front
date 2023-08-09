@@ -1,18 +1,20 @@
 import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
 import SignInPage from './pages/SignInPage'
-
+import UserProvider from './contexts/UserContext'
 
 function App() {
 
   return (
-    <>
-      <Routes>
-        <Route path='/cadastro' element={ <SignUpPage/> }/>
-        <Route path='/login' element={ <SignInPage/> }/>
-      </Routes>
-    </>
+    <BrowserRouter>
+      <UserProvider>
+        <Routes>
+          <Route path='/cadastro' element={ <SignUpPage/> }/>
+          <Route path='/login' element={ <SignInPage/> }/>
+        </Routes>
+      </UserProvider>
+    </BrowserRouter>
   )
 }
 
