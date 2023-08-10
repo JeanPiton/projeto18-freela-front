@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import ModelComp from "../components/ModelComp"
-import { useParams } from "react-router-dom"
 
 export default function ModelsPage(){
     const [models,setModels] = useState([])
-    const {page} = useParams()
+    const page = new URLSearchParams(location.search).get("page")
+    console.log(page)
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_URL}/models/?offset=${isNaN(page)?0:page*10}`)
@@ -15,6 +15,7 @@ export default function ModelsPage(){
 
     return (
         <>
+            <p>jeej</p>
             {
                 models.map(e=><ModelComp image={e.image} name={e.name} id={e.id}/>)
             }

@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path='/cadastro' element={ <SignUpPage/> }/>
           <Route path='/login' element={ <SignInPage/> }/>
-          <Route path='/:page?' element={ <ModelsPage/> }/>
+          <Route path='/' element={ <ModelsPage/> }/>
         </Routes>
       </UserProvider>
     </BrowserRouter>

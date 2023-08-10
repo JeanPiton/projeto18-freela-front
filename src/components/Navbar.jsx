@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { NavBar, SubMenu } from "../style/NavbarStyle";
+import logo from "../assets/react.svg"
 
 export default function Navbar(){
     const {user, setUser, userValidation} = useContext(UserContext)
     const location = useLocation()
-    const [visible,setVisible] = useState(false)
+    const [hidden,setHidden] = useState(true)
+    const nav = useNavigate();
 
     if(location.pathname=="/cadastro"||location.pathname=="/login") return
 
@@ -18,15 +21,18 @@ export default function Navbar(){
     }
 
     return(
-        <nav>
-            <img/>
-            <ul>
-                <li><button onClick={()=>setVisible(!visible)}>{user.name?user.name:"Visitante"}</button>
-                <ul hidden={visible}>
-                    <li><button onClick={()=>Profile()}>Perfil</button></li>
-                    <li><button onClick={()=>logOut()}>logout</button></li>
-                </ul></li>
-            </ul>
-        </nav>
+        <NavBar>
+            <div>
+                <img src={logo} onClick={()=>nav("/")}/>
+                <ul>
+                    <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}</button>
+                    <SubMenu hide={hidden}>
+                        <li><button onClick={()=>Profile()}>Perfil</button></li>
+                        <li><button onClick={()=>logOut()}>logout</button></li>
+                    </SubMenu></li>
+                </ul>
+            </div>
+            <hr/>
+        </NavBar>
     )
 }
