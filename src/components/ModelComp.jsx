@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { ItemBody } from "../style/ModelCompStyle"
 
 export default function ModelComp(props){
     const nav = useNavigate()
@@ -8,9 +9,11 @@ export default function ModelComp(props){
     }
 
     return(
-        <div onClick={()=>Goto()}>
+        <ItemBody onClick={()=>Goto()} active={props.active}>
             <img src={props.image}/>
-            <p>{props.name}</p>
-        </div>
+            <div>
+                <p>Nome: {props.name}</p>
+            </div>
+        </ItemBody>
     )
 }
