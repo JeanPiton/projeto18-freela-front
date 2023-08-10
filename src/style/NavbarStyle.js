@@ -7,6 +7,7 @@ export const NavBar = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
+    background-color: white;
 
     div{
         display: flex;
@@ -18,6 +19,7 @@ export const NavBar = styled.div`
 
     hr{
         width: 100%;
+        margin: 0;
     }
 
     button{

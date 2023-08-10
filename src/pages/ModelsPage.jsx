@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import ModelComp from "../components/ModelComp"
-import { ModelsBody } from "../style/ModelsPageStyle"
+import { ModelsArea, ModelsBody } from "../style/ModelsPageStyle"
 
 export default function ModelsPage(){
     const [models,setModels] = useState([])
@@ -12,15 +12,16 @@ export default function ModelsPage(){
         .then(resp=>setModels(resp.data))
         .catch(error=>console.log(error.message))
     },[])
-    console.log(models)
 
     return (
         <ModelsBody>
-            {
-                models.map((e,i)=>{
-                    if(i==10) return
-                    return <ModelComp image={e.image} name={e.name} id={e.id} active={e.active}/>})
-            }
+            <ModelsArea>
+                {
+                    models.map((e,i)=>{
+                        if(i==10) return
+                        return <ModelComp image={e.image} name={e.name} id={e.id} active={e.active}/>})
+                }
+            </ModelsArea>
         </ModelsBody>
     )
 }
