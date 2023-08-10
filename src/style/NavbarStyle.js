@@ -23,6 +23,7 @@ export const NavBar = styled.div`
     button{
         background-color: transparent;
         border-style: none;
+        font-size: 20px;
     }
 `;
 
