@@ -6,6 +6,7 @@ import UserProvider from './contexts/UserContext'
 import Navbar from './components/Navbar'
 import ModelsPage from './pages/ModelsPage'
 import ModelPage from './pages/ModelPage'
+import UserPage from './pages/UserPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/cadastro' element={ <SignUpPage/> }/>
           <Route path='/login' element={ <SignInPage/> }/>
           <Route path='/model/:id' element={ <ModelPage/> }/>
+          <Route path='/user' element={ <UserPage/> }/>
           <Route path='/' element={ <ModelsPage/> }/>
         </Routes>
       </UserProvider>

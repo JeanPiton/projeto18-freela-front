@@ -20,9 +20,9 @@ export default function UserProvider({children}){
         }
     },[user])
 
-    async function userValidation(path){
+    async function userValidation(){
         axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
-        .then(()=>nav(path))
+        .then()
         .catch(()=>nav("/login"))
     }
 

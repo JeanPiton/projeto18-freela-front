@@ -17,7 +17,7 @@ export default function Navbar(){
         setUser({})
     }
     function Profile(){
-        userValidation("/user")
+        nav("/user")
     }
 
     return(
