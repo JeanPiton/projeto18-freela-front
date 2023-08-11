@@ -14,9 +14,11 @@ export default function Navbar(){
 
     function logOut(){
         localStorage.removeItem("user")
+        setHidden(true)
         setUser({})
     }
     function Profile(){
+        setHidden(true)
         nav("/user")
     }
 
