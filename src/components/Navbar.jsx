@@ -25,8 +25,7 @@ export default function Navbar(){
             <div>
                 <img src={logo} onClick={()=>nav("/")}/>
                 <ul>
-                    <li><button onClick={()=>{setHidden(!hidden)
-                    console.log("test")}}>{user.name?user.name:"Visitante"}</button>
+                    <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}</button>
                     <SubMenu hide={hidden}>
                         <li><button onClick={()=>Profile()}>Perfil</button></li>
                         <li><button onClick={()=>logOut()}>logout</button></li>
