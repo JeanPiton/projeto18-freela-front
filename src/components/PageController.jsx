@@ -4,8 +4,10 @@ import { ControllerBox, ControllerButton } from "../style/PageControllerStyle"
 
 export default function PageController(props){
     const page = new URLSearchParams(location.search).get("page")
-    const [actualPage,setActualPage] = useState((!isNaN(page)&&page>=0)?parseInt(page):0)
+    const [actualPage,setActualPage] = useState((!isNaN(parseInt(page))&&page>=0)?parseInt(page):0)
     const nav = useNavigate()
+
+    console.log(page)
 
     function changePage(path){
         setActualPage(path)
