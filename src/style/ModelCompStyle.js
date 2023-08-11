@@ -7,7 +7,7 @@ export const ItemBody = styled.div`
     padding: 10px;
     width: 200px;
     height: 250px;
-    background-color:${props=>props.active?"#7fbc14":"#efefef"};
+    background-color:${props=>props.$active?"#7fbc14":"#efefef"};
     border-radius: 15px;
     gap: 5px;
 

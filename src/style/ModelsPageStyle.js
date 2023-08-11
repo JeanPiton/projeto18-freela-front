@@ -1,12 +1,16 @@
 import { styled } from "styled-components";
 
 export const ModelsBody = styled.div`
-    margin-top: 82px;
-    padding: 30px;
+    position:relative;
+    min-height: 100vh;
+    padding: 0 30px;
+    >:nth-child(1){
+        padding-top: 54px;
+    }
 `;
 
 export const SearchDiv = styled.div`
-
+    
 `;
 
 export const ModelsArea = styled.div`
@@ -15,8 +19,14 @@ export const ModelsArea = styled.div`
     grid-gap:30px;
     align-items: center;
     justify-items: center;
+    padding-bottom: 60px;
 `;
 
-export const PageArea = styled.div`
-
+export const ControllerArea = styled.div`
+    position: absolute;
+    display: flex;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    padding: 20px;
 `;

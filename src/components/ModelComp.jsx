@@ -9,7 +9,7 @@ export default function ModelComp(props){
     }
 
     return(
-        <ItemBody onClick={()=>Goto()} active={props.active}>
+        <ItemBody onClick={()=>Goto()} $active={props.active}>
             <img src={props.image}/>
             <div>
                 <p>Nome: {props.name}</p>

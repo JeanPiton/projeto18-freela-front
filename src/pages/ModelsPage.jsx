@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import ModelComp from "../components/ModelComp"
-import { ModelsArea, ModelsBody } from "../style/ModelsPageStyle"
+import { ControllerArea, ModelsArea, ModelsBody, SearchDiv } from "../style/ModelsPageStyle"
+import PageController from "../components/PageController"
 
 export default function ModelsPage(){
     const [models,setModels] = useState([])
@@ -15,6 +16,7 @@ export default function ModelsPage(){
 
     return (
         <ModelsBody>
+            <SearchDiv></SearchDiv>
             <ModelsArea>
                 {
                     models.map((e,i)=>{
@@ -22,6 +24,9 @@ export default function ModelsPage(){
                         return <ModelComp image={e.image} name={e.name} id={e.id} active={e.active}/>})
                 }
             </ModelsArea>
+            <ControllerArea>
+                <PageController qtd={models.length}/>
+            </ControllerArea>
         </ModelsBody>
     )
 }
