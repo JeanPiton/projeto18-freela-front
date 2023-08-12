@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Area1, Area2, Area3, ModelBody } from "../style/UsersModelCompStyle"
 
 export default function UsersModelComp(props){
@@ -24,7 +24,6 @@ export default function UsersModelComp(props){
     function handleSubmit(){
         if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
-            console.log({...formAInput,...formBInput,...formCInput})
             axios.patch(`${import.meta.env.VITE_API_URL}/models/user/${modelProps.id}`,{...formAInput,...formBInput,...formCInput},config)
             .then(window.location.reload())
             .catch(e=>console.log(e))
@@ -42,7 +41,6 @@ export default function UsersModelComp(props){
                     </form>
                 </Area1>
                 <Area2>
-                    <p>id:{modelProps.id}</p>
                     <p hidden={editMode}>nome:{modelProps.name}</p>
                     <p hidden={editMode}>características:<br/>{modelProps.description}</p>
                     <form hidden={!editMode} ref={formAref} onSubmit={e=>e.preventDefault()}>

@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 import { UserBody, Area1, Area2, Area3, PageBody, CatsBody } from "../style/UserPageStyle"
 import UsersModelComp from "../components/UsersModelComp"
+import { CreateModelComp } from "../components/CreateModelComp"
 
 export default function UserPage(){
     const config =  {headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}
@@ -78,6 +79,7 @@ export default function UserPage(){
                     return <UsersModelComp catInfo={e} races={races}/>
                 })}
             </CatsBody>
+            <CreateModelComp races={races}/>
         </PageBody>
     )
 }
