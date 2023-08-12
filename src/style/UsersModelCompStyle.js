@@ -1,20 +1,13 @@
 import { styled } from "styled-components";
 
-export const PageBody = styled.div`
+export const ModelBody = styled.div`
     display: flex;
-    flex-direction: column;
-    padding-top: 54px;
-    
-    hr{
-        width: 100%;
-    }
-`;
+    flex-direction: row;
+    gap:10px;
 
-export const UserBody = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    gap: 20px;
+    img{
+        max-width: 200px;
+    }
 `;
 
 export const Area1 = styled.div`
@@ -25,10 +18,6 @@ export const Area1 = styled.div`
 
     img{
         width: 100%;
-    }
-
-    p{
-        color:${props=>props.$color}
     }
 `;
 
@@ -50,7 +39,4 @@ export const Area3 = styled.div`
         justify-content: flex-end;
         gap:10px;
     }
-`;
-
-export const CatsBody = styled.div`
 `;
