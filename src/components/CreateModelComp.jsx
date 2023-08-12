@@ -25,8 +25,7 @@ export function CreateModelComp(props){
             setEditMode(false);
             axios.post(`${import.meta.env.VITE_API_URL}/models/user`,{...formAInput,...formBInput,...formCInput},config)
             .then(r=>{
-                console.log(r)
-                //window.location.reload()
+                window.location.reload()
             })
             .catch(e=>console.log(e))
         }
