@@ -29,7 +29,8 @@ export const Area1 = styled.div`
 
     .userImage{
         border-radius: 50%;
-        max-width: 100px;
+        width: 100px;
+        height: 100px;
     }
 `;
 

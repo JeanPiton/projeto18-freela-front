@@ -2,6 +2,8 @@ import { useContext, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
+import logo from "../assets/logo.png"
+import { Body } from "../style/SignPage"
 
 export default function SignInPage(){
     const {setUser} = useContext(UserContext)
@@ -26,7 +28,8 @@ export default function SignInPage(){
     }
 
     return(
-        <div>
+        <Body>
+            <img src={logo}/>
             <h1>Login</h1>
             <form onSubmit={signIn}>
                 <input type="email" placeholder="email" required disabled={loading} onChange={e=>setSignInInputs(previous=>({...previous, ['email']:e.target.value}))} value={SignInInputs.email}/>
@@ -34,6 +37,6 @@ export default function SignInPage(){
                 <button disabled={loading}>{!loading?"Login":"Carregando"}</button>
             </form>
             <a href="/cadastro">Cadastrar</a>
-        </div>
+        </Body>
     )
 }

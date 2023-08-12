@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { Body } from "../style/SignPage"
+import logo from "../assets/logo.png"
 
 export default function SignUpPage(){
     const nav = useNavigate()
@@ -21,10 +23,12 @@ export default function SignUpPage(){
     }
 
     return(
-        <div>
+        <Body>
+            <img src={logo}/>
             <h1>Cadastro</h1>
             <form onSubmit={signUp}>
                 <input type="text" placeholder="nome" required disabled={loading} onChange={e=>setSignUpInputs(previous=>({...previous, ['name']:e.target.value}))} value={SignUpInputs.name}/>
+                <img src={SignUpInputs.image} hidden={SignUpInputs.image?false:true}/>
                 <input type="url" placeholder="foto de perfil" required disabled={loading} onChange={e=>setSignUpInputs(previous=>({...previous, ['image']:e.target.value}))} value={SignUpInputs.image}/>
                 <input type="email" placeholder="email" required disabled={loading} onChange={e=>setSignUpInputs(previous=>({...previous, ['email']:e.target.value}))} value={SignUpInputs.email}/>
                 <input type="text" placeholder="cpf" required disabled={loading} onChange={e=>setSignUpInputs(previous=>({...previous, ['cpf']:e.target.value}))} value={SignUpInputs.cpf.replace(/\D/,"")}/>
@@ -33,6 +37,6 @@ export default function SignUpPage(){
                 <button disabled={loading}>{!loading?"Cadastrar":"Carregando"}</button>
             </form>
             <a href="/login">Login</a>
-        </div>
+        </Body>
     )
 }
