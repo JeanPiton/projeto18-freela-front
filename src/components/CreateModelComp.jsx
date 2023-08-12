@@ -3,7 +3,7 @@ import { useRef,useState } from "react";
 import { Area1, Area2, Area3, ModelBody } from "../style/UsersModelCompStyle";
 
 export function CreateModelComp(props){
-    const config =  {headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}
+    const config = props.config
     const [races,setRaces] = useState(props.races)
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:"",description:""})

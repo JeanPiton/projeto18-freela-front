@@ -26,10 +26,6 @@ export const Area1 = styled.div`
     img{
         width: 100%;
     }
-
-    p{
-        color:${props=>props.$color}
-    }
 `;
 
 export const Area2 = styled.div`

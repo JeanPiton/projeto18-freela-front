@@ -21,9 +21,17 @@ export default function UserProvider({children}){
     },[user])
 
     async function userValidation(){
-        axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
-        .then()
-        .catch(()=>nav("/login"))
+        let ret = false
+        if(user.token==null){
+            ret = false
+            nav("/login")
+        }else{
+            axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
+            .then(()=>ret = true)
+            .catch(()=>nav("/login"))
+        }
+        
+        return ret
     }
 
     return (

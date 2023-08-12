@@ -1,11 +1,13 @@
 import axios from "axios"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { UserBody, Area1, Area2, Area3, PageBody, CatsBody } from "../style/UserPageStyle"
 import UsersModelComp from "../components/UsersModelComp"
 import { CreateModelComp } from "../components/CreateModelComp"
+import { UserContext } from "../contexts/UserContext"
 
 export default function UserPage(){
-    const config =  {headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}
+    const {userValidation} = useContext(UserContext)
+    let config = ""
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:"",email:""})
     const [formBInput,setFormBInput] = useState({cpf:"",telephone:""})
@@ -16,18 +18,23 @@ export default function UserPage(){
     const formBref = useRef();
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/user/info`,config)
-        .then(r=>{
-            setUserInfo(r.data)
-            setFormAInput({name:r.data.name,email:r.data.email})
-            setFormBInput({cpf:r.data.cpf,telephone:r.data.telephone})
-        })
-        .catch(err=>console.log(err.message))
-        axios.get(`${import.meta.env.VITE_API_URL}/models/user`,config)
-        .then(r=>{
-            setModels(r.data.models)
-            setRaces(r.data.races)
-        })
+        if(userValidation()==true){
+            console.log("token")
+            config = {headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}
+            axios.get(`${import.meta.env.VITE_API_URL}/user/info`,config)
+            .then(r=>{
+                setUserInfo(r.data)
+                setFormAInput({name:r.data.name,email:r.data.email})
+                setFormBInput({cpf:r.data.cpf,telephone:r.data.telephone})
+            })
+            .catch(err=>console.log(err.message))
+            axios.get(`${import.meta.env.VITE_API_URL}/models/user`,config)
+            .then(r=>{
+                setModels(r.data.models)
+                setRaces(r.data.races)
+            })
+        }
+        
     },[])
 
     function handleSubmit(){
@@ -47,11 +54,10 @@ export default function UserPage(){
 
     return(
         <PageBody>
-            <UserBody>{/*
-                <Area1 $color={model.active?"#7fbc14":"#c9c9c9"}>
-                    <img src={model.image}/>
-                    <p>{model.active?"Disponível":"Indisponível"}</p>
-                </Area1>*/}
+            <UserBody>{
+                <Area1>
+                    <img src={userInfo.image}/>
+                </Area1>}
                 <Area2>
                     <p hidden={editMode}>nome: {userInfo.name}</p>
                     <p hidden={editMode}>email: {userInfo.email}</p>
@@ -79,7 +85,7 @@ export default function UserPage(){
                     return <UsersModelComp catInfo={e} races={races}/>
                 })}
             </CatsBody>
-            <CreateModelComp races={races}/>
+            <CreateModelComp races={races} config={config}/>
         </PageBody>
     )
 }
