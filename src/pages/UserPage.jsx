@@ -11,11 +11,13 @@ export default function UserPage(){
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:"",email:""})
     const [formBInput,setFormBInput] = useState({cpf:"",telephone:""})
-    const [userInfo, setUserInfo] = useState({name:"",email:"",cpf:"",telephone:""})
+    const [formCInput,setFormCInput] = useState({image:""})
+    const [userInfo, setUserInfo] = useState({name:"",email:"",cpf:"",telephone:"",image:""})
     const [models,setModels] = useState([])
     const [races,setRaces] = useState([])
     const formAref = useRef();
     const formBref = useRef();
+    const formCref = useRef();
 
     useEffect(()=>{
         if(userValidation()==true){
@@ -26,6 +28,7 @@ export default function UserPage(){
                 setUserInfo(r.data)
                 setFormAInput({name:r.data.name,email:r.data.email})
                 setFormBInput({cpf:r.data.cpf,telephone:r.data.telephone})
+                setFormCInput({image:r.data.image})
             })
             .catch(err=>console.log(err.message))
             axios.get(`${import.meta.env.VITE_API_URL}/models/user`,config)
@@ -38,9 +41,9 @@ export default function UserPage(){
     },[])
 
     function handleSubmit(){
-        if(formAref.current.reportValidity()&&formBref.current.reportValidity()){
+        if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
-            axios.patch(`${import.meta.env.VITE_API_URL}/user/info`,{...formAInput,...formBInput},config)
+            axios.patch(`${import.meta.env.VITE_API_URL}/user/info`,{...formAInput,...formBInput,...formCInput},config)
             .then(window.location.reload())
             .catch(e=>console.log(e))
         }
@@ -50,13 +53,18 @@ export default function UserPage(){
         setEditMode(false)
         setFormAInput({name:userInfo.name,email:userInfo.email})
         setFormBInput({cpf:userInfo.cpf,telephone:userInfo.telephone})
+        setFormCInput({image:userInfo.image})
     }
 
     return(
         <PageBody>
             <UserBody>{
                 <Area1>
-                    <img src={userInfo.image}/>
+                    <img src={userInfo.image} hidden={!editMode}/>
+                    <form hidden={!editMode} ref={formCref}>
+                        <img src={formCInput.image}/>
+                        <p>foto de perfil: <input type="url" required onChange={e=>setFormCInput(previous=>({...previous, ['image']:e.target.value}))} value={formCInput.image}/></p>
+                    </form>
                 </Area1>}
                 <Area2>
                     <p hidden={editMode}>nome: {userInfo.name}</p>
