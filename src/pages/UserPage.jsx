@@ -6,7 +6,7 @@ import { CreateModelComp } from "../components/CreateModelComp"
 import { UserContext } from "../contexts/UserContext"
 
 export default function UserPage(){
-    const {userValidation} = useContext(UserContext)
+    const {userValidation,user,setUser} = useContext(UserContext)
     const config = JSON.parse(localStorage.getItem('user'))!=undefined?{headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}:""
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:"",email:""})
@@ -40,7 +40,10 @@ export default function UserPage(){
         if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
             axios.patch(`${import.meta.env.VITE_API_URL}/user/info`,{...formAInput,...formBInput,...formCInput},config)
-            .then(window.location.reload())
+            .then(()=>{
+                setUser({...user,name:undefined,image:undefined})
+                window.location.reload()
+            })
             .catch(e=>console.log(e))
         }
     }

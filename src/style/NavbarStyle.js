@@ -24,9 +24,19 @@ export const NavBar = styled.div`
     }
 
     button{
-        background-color: transparent;
+        display: flex;
+        background-color: white;
         border-style: none;
         font-size: 20px;
+        text-align: center;
+        line-height: 150%;
+        gap:5px;
+    }
+
+    .profilePicture{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
     }
 `;
 

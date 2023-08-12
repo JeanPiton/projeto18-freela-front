@@ -12,11 +12,15 @@ export default function Navbar(){
 
     if(location.pathname=="/cadastro"||location.pathname=="/login") return
 
-    function logOut(){
-        localStorage.removeItem("user")
+    function Log(){
+        if(user.name){
+            localStorage.removeItem("user")
+            setUser({})
+            if(location.pathname=="/user") nav("/")
+        }else{
+            nav("/login")
+        }
         setHidden(true)
-        setUser({})
-        if(location.pathname=="/user") nav("/")
     }
     function Profile(){
         setHidden(true)
@@ -28,10 +32,12 @@ export default function Navbar(){
             <div>
                 <img src={logo} onClick={()=>nav("/")}/>
                 <ul>
-                    <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}</button>
+                    <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}
+                    {user.name?<img src={user.image} className="profilePicture"/>:""}
+                    </button>
                     <SubMenu hide={hidden}>
                         <li><button onClick={()=>Profile()}>Perfil</button></li>
-                        <li><button onClick={()=>logOut()}>logout</button></li>
+                        <li><button onClick={()=>Log()}>{user.name?"Logout":"Login"}</button></li>
                     </SubMenu></li>
                 </ul>
             </div>
