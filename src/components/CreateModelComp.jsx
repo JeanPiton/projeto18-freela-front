@@ -23,7 +23,6 @@ export function CreateModelComp(props){
     function handleSubmit(){
         if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
-            console.log({...formAInput,...formBInput,...formCInput})
             axios.post(`${import.meta.env.VITE_API_URL}/models/user`,{...formAInput,...formBInput,...formCInput},config)
             .then(window.location.reload())
             .catch(e=>console.log(e))

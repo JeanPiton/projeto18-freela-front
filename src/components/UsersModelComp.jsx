@@ -8,7 +8,7 @@ export default function UsersModelComp(props){
     const [races,setRaces] = useState(props.races)
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:modelProps.name,description:modelProps.description})
-    const [formBInput,setFormBInput] = useState({race:races.filter(e=>e.id==modelProps.speciesId)[0].name,active:modelProps.active})
+    const [formBInput,setFormBInput] = useState({race:races.filter(e=>e.id==modelProps.racesId)[0].name,active:modelProps.active})
     const [formCInput,setFormCInput] = useState({image:modelProps.image})
     const formAref = useRef()
     const formBref = useRef()
@@ -17,7 +17,7 @@ export default function UsersModelComp(props){
     function Cancel(){
         setEditMode(false)
         setFormAInput({name:modelProps.name,description:modelProps.description})
-        setFormBInput({race:races.filter(e=>e.id==modelProps.speciesId)[0].name.race,active:modelProps.active})
+        setFormBInput({race:races.filter(e=>e.id==modelProps.racesId)[0].name,active:modelProps.active})
         setFormCInput({image:modelProps.image})
     }
 
