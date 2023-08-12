@@ -13,6 +13,8 @@ export default function ModelPage(){
         .catch(error=>console.log(error.message))
     },[])
 
+    console.log(model)
+
     return(
         <ModelBody>
             <Area1 $color={model.active?"#7fbc14":"#c9c9c9"}>
@@ -22,7 +24,7 @@ export default function ModelPage(){
             <Area2>
                 <p>nome: {model.name}</p>
                 <p>raça: {model.race}</p>
-                <p>características:<br/>{model.description}</p>
+                <p>características:<br/>{`${model.description}`}</p>
             </Area2>
             <Area3>
                 <p>dono: {model.ownerName}</p>

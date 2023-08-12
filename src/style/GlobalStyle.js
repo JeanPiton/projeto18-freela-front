@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
       
       user-select: none;
   }
+  p{
+    white-space: pre-wrap;
+  }
 `;
 
 export default GlobalStyle;
