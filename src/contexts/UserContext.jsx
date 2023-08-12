@@ -30,7 +30,6 @@ export default function UserProvider({children}){
             .then(()=>ret = true)
             .catch(()=>nav("/login"))
         }
-        
         return ret
     }
 
