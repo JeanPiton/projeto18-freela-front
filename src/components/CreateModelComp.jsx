@@ -24,7 +24,10 @@ export function CreateModelComp(props){
         if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
             axios.post(`${import.meta.env.VITE_API_URL}/models/user`,{...formAInput,...formBInput,...formCInput},config)
-            .then(window.location.reload())
+            .then(r=>{
+                console.log(r)
+                //window.location.reload()
+            })
             .catch(e=>console.log(e))
         }
     }
@@ -48,7 +51,7 @@ export function CreateModelComp(props){
                     <p>raça:
                     <input list="races" required onChange={e=>setFormBInput(previous=>({...previous, ['race']:e.target.value}))} value={formBInput.race}/>
                     <datalist id="races">
-                        {races.map(e=><option value={e.name}/>)}
+                        {races.map((e,i)=><option key={i*100000} value={e.name}/>)}
                     </datalist>
                     </p>
                     <p>ativo: <input type="checkbox" onChange={e=>setFormBInput(previous=>({...previous, ['active']:e.target.checked}))} checked={formBInput.active}/></p>

@@ -38,7 +38,7 @@ export default function ModelsPage(){
                     </select>
                     <select onChange={e=>setSearch(previous=>({...previous, ['race']:e.target.value}))} value={search.race}>
                         <option value="">Raças</option>
-                        {races.map(e=><option value={e.id}>{e.name}</option>)}
+                        {races.map(e=><option value={e.id} key={e.id}>{e.name}</option>)}
                     </select>
                 </form>
             </SearchDiv>
@@ -46,7 +46,7 @@ export default function ModelsPage(){
                 {
                     models.map((e,i)=>{
                         if(i==10) return
-                        return <ModelComp image={e.image} name={e.name} id={e.id} active={e.active}/>
+                        return <ModelComp key={i*100} image={e.image} name={e.name} id={e.id} active={e.active}/>
                     })
                 }
             </ModelsArea>

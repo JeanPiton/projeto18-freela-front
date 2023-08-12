@@ -88,8 +88,8 @@ export default function UserPage(){
             </UserBody>
             <hr/>
             <CatsBody>
-                {models.map(e=>{
-                    return <UsersModelComp catInfo={e} races={races}/>
+                {models.map((e,i)=>{
+                    return <UsersModelComp key={i*100} catInfo={e} races={races}/>
                 })}
             </CatsBody>
             <CreateModelComp races={races} config={config}/>

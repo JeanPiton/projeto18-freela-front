@@ -55,7 +55,7 @@ export default function UsersModelComp(props){
                         <p>raça:
                             <input list="races" required onChange={e=>setFormBInput(previous=>({...previous, ['race']:e.target.value}))} value={formBInput.race}/>
                             <datalist id="races">
-                                {races.map(e=><option value={e.name}/>)}
+                                {races.map((e,i)=><option key={i*10000} value={e.name}/>)}
                             </datalist>
                         </p>
                         <p>ativo: <input type="checkbox" onChange={e=>setFormBInput(previous=>({...previous, ['active']:e.target.checked}))} checked={formBInput.active}/></p>

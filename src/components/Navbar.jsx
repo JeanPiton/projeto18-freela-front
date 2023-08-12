@@ -35,10 +35,14 @@ export default function Navbar(){
                     <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}
                     {user.name?<img src={user.image} className="profilePicture"/>:""}
                     </button>
-                    <SubMenu hide={hidden}>
-                        <li><button onClick={()=>Profile()}>Perfil</button></li>
-                        <li><button onClick={()=>Log()}>{user.name?"Logout":"Login"}</button></li>
-                    </SubMenu></li>
+                    {   
+                        !hidden?
+                        <SubMenu>
+                            <li><button onClick={()=>Profile()}>Perfil</button></li>
+                            <li><button onClick={()=>Log()}>{user.name?"Logout":"Login"}</button></li>
+                        </SubMenu>:<></>
+                    }
+                    </li>
                 </ul>
             </div>
             <hr/>
