@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const PageBody = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 54px;
+    padding-top: 140px;
     
     hr{
         width: 100%;

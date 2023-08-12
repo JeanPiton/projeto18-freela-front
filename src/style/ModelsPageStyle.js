@@ -4,13 +4,11 @@ export const ModelsBody = styled.div`
     position:relative;
     min-height: 100vh;
     padding: 0 30px;
-    >:nth-child(1){
-        padding-top: 54px;
-    }
 `;
 
 export const SearchDiv = styled.div`
-    
+    padding: 20px;
+    padding-top: 140px;
 `;
 
 export const ModelsArea = styled.div`

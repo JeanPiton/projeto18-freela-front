@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavBar, SubMenu } from "../style/NavbarStyle";
-import logo from "../assets/react.svg"
+import logo from "../assets/logo.png"
 
 export default function Navbar(){
     const {user, setUser, userValidation} = useContext(UserContext)
@@ -30,7 +30,7 @@ export default function Navbar(){
     return(
         <NavBar>
             <div>
-                <img src={logo} onClick={()=>nav("/")}/>
+                <img src={logo} onClick={()=>nav("/")} className="logo"/>
                 <ul>
                     <li><button onClick={()=>setHidden(!hidden)}>{user.name?user.name:"Visitante"}
                     {user.name?<img src={user.image} className="profilePicture"/>:""}

@@ -4,7 +4,7 @@ export const ModelBody = styled.div`
     display: flex;
     flex-wrap: wrap;
     padding: 15px;
-    padding-top: 54px;
+    padding-top: 140px;
     gap: 20px;
 `;
 

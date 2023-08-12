@@ -29,14 +29,18 @@ export const NavBar = styled.div`
         border-style: none;
         font-size: 20px;
         text-align: center;
-        line-height: 150%;
+        line-height: 200%;
         gap:5px;
     }
 
     .profilePicture{
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
+    }
+
+    .logo{
+        height: 100px;
     }
 `;
 
