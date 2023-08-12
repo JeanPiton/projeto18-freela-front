@@ -16,6 +16,7 @@ export default function Navbar(){
         localStorage.removeItem("user")
         setHidden(true)
         setUser({})
+        if(location.pathname=="/user") nav("/")
     }
     function Profile(){
         setHidden(true)

@@ -33,6 +33,7 @@ export default function SignInPage(){
                 <input type="password" placeholder="senha" required disabled={loading} onChange={e=>setSignInInputs(previous=>({...previous, ['password']:e.target.value}))} value={SignInInputs.password}/>
                 <button disabled={loading}>{!loading?"Login":"Carregando"}</button>
             </form>
+            <a href="/cadastro">Cadastrar</a>
         </div>
     )
 }

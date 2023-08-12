@@ -26,6 +26,11 @@ export const Area1 = styled.div`
     img{
         width: 100%;
     }
+
+    .userImage{
+        border-radius: 50%;
+        max-width: 100px;
+    }
 `;
 
 export const Area2 = styled.div`

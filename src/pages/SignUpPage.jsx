@@ -32,6 +32,7 @@ export default function SignUpPage(){
                 <input type="password" placeholder="senha" required disabled={loading} onChange={e=>setSignUpInputs(previous=>({...previous, ['password']:e.target.value}))} value={SignUpInputs.password}/>
                 <button disabled={loading}>{!loading?"Cadastrar":"Carregando"}</button>
             </form>
+            <a href="/login">Login</a>
         </div>
     )
 }

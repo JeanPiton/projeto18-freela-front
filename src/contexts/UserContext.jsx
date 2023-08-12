@@ -13,24 +13,21 @@ export default function UserProvider({children}){
         if(user.name==undefined&&lsUser!=null){
             axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
             .then(resp=>{
-                localStorage.setItem("user",JSON.stringify({...lsUser,name:resp.data.name}))
-                setUser({...user,name:resp.data.name})
+                localStorage.setItem("user",JSON.stringify({...lsUser,name:resp.data.name,image:resp.data.image}))
+                setUser({...user,name:resp.data.name,image:resp.data.image})
             })
             .catch(err=>console.log(err))
         }
     },[user])
 
     async function userValidation(){
-        let ret = false
         if(user.token==null){
-            ret = false
             nav("/login")
         }else{
             axios.post(`${import.meta.env.VITE_API_URL}/token`,{email:user.email,token:user.token})
-            .then(()=>ret = true)
+            .then()
             .catch(()=>nav("/login"))
         }
-        return ret
     }
 
     return (

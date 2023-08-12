@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/UserContext"
 
 export default function UserPage(){
     const {userValidation} = useContext(UserContext)
-    let config = ""
+    const config = JSON.parse(localStorage.getItem('user'))!=undefined?{headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}:""
     const [editMode,setEditMode] = useState(false)
     const [formAInput,setFormAInput] = useState({name:"",email:""})
     const [formBInput,setFormBInput] = useState({cpf:"",telephone:""})
@@ -20,24 +20,20 @@ export default function UserPage(){
     const formCref = useRef();
 
     useEffect(()=>{
-        if(userValidation()==true){
-            console.log("token")
-            config = {headers:{Authorization:`Bearer ${JSON.parse(localStorage.getItem('user')).token}`}}
-            axios.get(`${import.meta.env.VITE_API_URL}/user/info`,config)
-            .then(r=>{
-                setUserInfo(r.data)
-                setFormAInput({name:r.data.name,email:r.data.email})
-                setFormBInput({cpf:r.data.cpf,telephone:r.data.telephone})
-                setFormCInput({image:r.data.image})
-            })
-            .catch(err=>console.log(err.message))
-            axios.get(`${import.meta.env.VITE_API_URL}/models/user`,config)
-            .then(r=>{
-                setModels(r.data.models)
-                setRaces(r.data.races)
-            })
-        }
-        
+        userValidation()
+        axios.get(`${import.meta.env.VITE_API_URL}/user/info`,config)
+        .then(r=>{
+            setUserInfo(r.data)
+            setFormAInput({name:r.data.name,email:r.data.email})
+            setFormBInput({cpf:r.data.cpf,telephone:r.data.telephone})
+            setFormCInput({image:r.data.image})
+        })
+        .catch(err=>console.log(err.message))
+        axios.get(`${import.meta.env.VITE_API_URL}/models/user`,config)
+        .then(r=>{
+            setModels(r.data.models)
+            setRaces(r.data.races)
+        })
     },[])
 
     function handleSubmit(){
@@ -60,16 +56,16 @@ export default function UserPage(){
         <PageBody>
             <UserBody>{
                 <Area1>
-                    <img src={userInfo.image} hidden={!editMode}/>
-                    <form hidden={!editMode} ref={formCref}>
-                        <img src={formCInput.image}/>
+                    <img src={userInfo.image} hidden={editMode} className="userImage"/>
+                    <form hidden={!editMode} ref={formCref} onSubmit={e=>e.preventDefault()}>
+                        <img src={formCInput.image} className="userImage"/>
                         <p>foto de perfil: <input type="url" required onChange={e=>setFormCInput(previous=>({...previous, ['image']:e.target.value}))} value={formCInput.image}/></p>
                     </form>
                 </Area1>}
                 <Area2>
                     <p hidden={editMode}>nome: {userInfo.name}</p>
                     <p hidden={editMode}>email: {userInfo.email}</p>
-                    <form hidden={!editMode} ref={formAref}>
+                    <form hidden={!editMode} ref={formAref} onSubmit={e=>e.preventDefault()}>
                         <p>nome: <input type="text" required onChange={e=>setFormAInput(previous=>({...previous, ['name']:e.target.value}))} value={formAInput.name}/></p>
                         <p>email: <input type="email" required onChange={e=>setFormAInput(previous=>({...previous, ['email']:e.target.value}))} value={formAInput.email}/></p>
                     </form>
@@ -77,7 +73,7 @@ export default function UserPage(){
                 <Area3>
                     <p hidden={editMode}>cpf: {userInfo.cpf}</p>
                     <p hidden={editMode}>tel.: {userInfo.telephone}</p>
-                    <form hidden={!editMode} ref={formBref}>
+                    <form hidden={!editMode} ref={formBref} onSubmit={e=>e.preventDefault()}>
                         <p>cpf: <input type="text" required onChange={e=>setFormBInput(previous=>({...previous, ['cpf']:e.target.value}))} value={formBInput.cpf.replace(/\D/,"")}/></p>
                         <p>tel.: <input type="text" required onChange={e=>setFormBInput(previous=>({...previous, ['telephone']:e.target.value}))} value={formBInput.telephone.replace(/\D/,"")}/></p>
                     </form>
