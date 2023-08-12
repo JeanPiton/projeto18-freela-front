@@ -25,7 +25,7 @@ export default function UsersModelComp(props){
         if(formAref.current.reportValidity()&&formBref.current.reportValidity()&&formCref.current.reportValidity()){
             setEditMode(false);
             axios.patch(`${import.meta.env.VITE_API_URL}/models/user/${modelProps.id}`,{...formAInput,...formBInput,...formCInput},config)
-            .then(window.location.reload())
+            .then(()=>{window.location.reload()})
             .catch(e=>console.log(e))
         }
     }
