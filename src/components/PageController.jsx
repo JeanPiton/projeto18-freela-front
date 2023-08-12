@@ -7,8 +7,6 @@ export default function PageController(props){
     const [actualPage,setActualPage] = useState((!isNaN(parseInt(page))&&page>=0)?parseInt(page):0)
     const nav = useNavigate()
 
-    console.log(page)
-
     function changePage(path){
         setActualPage(path)
         nav(`/?page=${path}`)

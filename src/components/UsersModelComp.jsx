@@ -49,7 +49,7 @@ export default function UsersModelComp(props){
                     </form>
                 </Area2>
                 <Area3>
-                    <p hidden={editMode}>raça:{races.filter(e=>e.id==modelProps.speciesId)[0].name}</p>
+                    <p hidden={editMode}>raça:{races.filter(e=>e.id==modelProps.racesId)[0].name}</p>
                     <p hidden={editMode}>ativo:<input type="checkbox" readOnly checked={modelProps.active}/></p>
                     <form hidden={!editMode} ref={formBref} onSubmit={e=>e.preventDefault()}>
                         <p>raça:
